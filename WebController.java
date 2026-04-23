@@ -118,7 +118,11 @@ public class WebController {
             }
 
             File file = new File(filePath);
-            
+            if (!file.exists()) {
+                error400(outTo);
+                client.close();
+                return;
+            }
 
             FileInputStream f = new FileInputStream(file);
             byte[] fData = f.readAllBytes();
