@@ -104,6 +104,9 @@ public class WebController {
 
             // routing logic to direct traffic
             String path = tokens[1]; // get the html end of a url
+            for(String s : tokens){
+                System.out.println(s);
+            }
             System.out.println(path);
             System.out.println(host);
             String filePath = "";
@@ -113,13 +116,15 @@ public class WebController {
                 filePath = "./paypal/bank.html";
             } else if (path.equals("/")) {
                 filePath = "./index.html";
+            }else if (path.equals("/paypal/bank.html")) {
+                filePath = "./paypal/bank.html";
             } else {
                 filePath = "." + path;
             }
 
             File file = new File(filePath);
             if (!file.exists()) {
-                error400(outTo);
+                error404(outTo);
                 client.close();
                 return;
             }
