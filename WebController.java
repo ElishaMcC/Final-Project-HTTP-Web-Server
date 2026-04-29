@@ -47,7 +47,6 @@ public class WebController {
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
-
     }
 
     public static void clientHandler(Socket client) throws Exception {
@@ -63,6 +62,7 @@ public class WebController {
                 client.close();
                 return;
             }
+
 
             // get the HTTP request message
             String host = "";
@@ -80,7 +80,6 @@ public class WebController {
 
             // get the client's IP
             String clientIP = client.getInetAddress().getHostAddress();
-            System.out.println(clientIP);
 
             // set a list of IPs that are blocked
             //---------------PLACE BLOCKED IPS HERE: v
@@ -116,8 +115,6 @@ public class WebController {
                 filePath = "./paypal/bank.html";
             } else if (path.equals("/")) {
                 filePath = "./index.html";
-            }else if (path.equals("/paypal/bank.html")) {
-                filePath = "./paypal/bank.html";
             } else {
                 filePath = "." + path;
             }
